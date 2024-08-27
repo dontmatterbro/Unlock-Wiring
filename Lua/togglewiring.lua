@@ -1,6 +1,29 @@
 local wiringstatus = nil
 
+--enable singleplayer wiring
+Hook.Add("roundStart", "enablesingleplayerwiring", function()
+
+	if CLIENT and not Game.IsMultiplayer then 
+
+		for item in Item.ItemList do		
+			
+			local connectionPanel = item.GetComponentString("ConnectionPanel")
+				
+			if connectionPanel then
+				connectionPanel.Locked = false
+			end
+			
+		end
+		
+		print("‖color:0,255,0‖".."All Wires Unlocked!".."‖color:end‖")
+	end
+	
+end)
+
+--multiplayer commands
 Hook.Add("chatMessage", "wiringcommand", function (message, client)
+
+	if CLIENT and not Game.IsMultiplayer then return end --don't let this run on singleplayer
 	
 	if message == "!wiring" then
 		
@@ -116,6 +139,7 @@ function UnlockWiringSub()
     end
 	
 	Game.ServerSettings.AllowRewiring=true
+	Game.ServerSettings.LockAllDefaultWires=false
 	Game.ServerSettings.ForcePropertyUpdate()
 	
 	if not wiringstatus=="‖color:0,255,0‖".."All Unlocked".."‖color:end‖" then
@@ -136,6 +160,7 @@ function UnlockWiringAll()
     end
 
 	Game.ServerSettings.AllowRewiring=true
+	Game.ServerSettings.LockAllDefaultWires=false
 	Game.ServerSettings.ForcePropertyUpdate()
 
 	wiringstatus = "‖color:0,255,0‖".."All Unlocked".."‖color:end‖"

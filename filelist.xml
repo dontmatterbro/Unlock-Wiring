@@ -1,2 +1,4 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<contentpackage name="Unlock Wiring" modversion="1.0.3" corepackage="False" steamworkshopid="3317244700" gameversion="1.5.9.1" />
+<contentpackage name="Unlock Wiring" modversion="1.0.3h1" corepackage="False" steamworkshopid="3317244700" gameversion="1.6.17.0">
+  <Item file="%ModDir%/dummy.xml" />
+</contentpackage>
